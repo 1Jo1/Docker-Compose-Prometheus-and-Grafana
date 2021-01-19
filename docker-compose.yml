@@ -1,8 +1,4 @@
-version: '2.1'
-
-networks:
-  monitor-net:
-    driver: bridge
+version: '3.9'
 
 volumes:
     prometheus_data: {}
@@ -11,8 +7,9 @@ volumes:
 services:
 
   prometheus:
-    image: prom/prometheus:v2.17.1
+    image: prom/prometheus:v2.24.0
     container_name: prometheus
+    network_mode: host
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus_data:/prometheus
@@ -24,18 +21,13 @@ services:
       - '--storage.tsdb.retention.time=200h'
       - '--web.enable-lifecycle'
     restart: unless-stopped
-    ports:
-      - "9090:9090"
-    networks:
-      - monitor-net
     labels:
       org.label-schema.group: "monitoring"
 
   nodeexporter:
-    image: prom/node-exporter:v0.18.1
+    image: prom/node-exporter:v1.0.1
     container_name: nodeexporter
-    networks:
-     - monitor-net
+    network_mode: host
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -46,14 +38,13 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
     restart: unless-stopped
-    ports:
-      - "9100:9100"
     labels:
       org.label-schema.group: "monitoring"
 
   cadvisor:
-    image: gcr.io/google-containers/cadvisor:v0.34.0
+    image: gcr.io/google-containers/cadvisor:v0.36.0
     container_name: cadvisor
+    network_mode: host
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
@@ -61,36 +52,27 @@ services:
       - /var/lib/docker:/var/lib/docker:ro
       #- /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
     restart: unless-stopped
-    ports:
-      - "8080:8080"
-    networks:
-      - monitor-net
     labels:
       org.label-schema.group: "monitoring"
 
   grafana:
-    image: grafana/grafana:6.7.2
+    image: grafana/grafana:7.3.6
     container_name: grafana
+    network_mode: host
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     environment:
       - GF_USERS_ALLOW_SIGN_UP=false
     restart: unless-stopped
-    ports:
-      - "3000:3000"
-    networks:
-      - monitor-net
+    network_mode: host
     labels:
       org.label-schema.group: "monitoring"
 
   pushgateway:
-    image: prom/pushgateway:v1.2.0
+    image: prom/pushgateway:v1.3.1
     container_name: pushgateway
     restart: unless-stopped
-    ports:
-      - "9091:9091"
-    networks:
-      - monitor-net
+    network_mode: host
     labels:
       org.label-schema.group: "monitoring"
