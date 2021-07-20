@@ -26,6 +26,20 @@ scrape_configs:
       - targets: ['localhost:9100']
         labels:
           hostname: netcup
+  
+  - job_name: 'pi-node'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['100.76.32.117:9100']
+        labels:
+          hostname: pi
+  
+  - job_name: 'tenet-node'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['100.122.109.47:9100']
+        labels:
+          hostname: tenet   
 
   - job_name: 'prometheus'
     scrape_interval: 5s
