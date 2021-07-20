@@ -13,15 +13,19 @@ rule_files:
 
 # A scrape configuration containing exactly one endpoint to scrape.
 scrape_configs:
-  - job_name: 'incept'
+  - job_name: 'incept-node'
     scrape_interval: 5s
     static_configs:
       - targets: ['100.100.218.115:9100']
+        labels:
+          hostname: incept
 
-  - job_name: 'netcup'
+  - job_name: 'netcup-node'
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9100']
+        labels:
+          hostname: netcup
 
   - job_name: 'prometheus'
     scrape_interval: 5s
