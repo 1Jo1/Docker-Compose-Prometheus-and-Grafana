@@ -9,7 +9,7 @@ services:
   prometheus:
     image: prom/prometheus:v2.28.1
     container_name: prometheus
-    network: host
+    network_mode: host
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus_data:/prometheus
@@ -27,7 +27,7 @@ services:
   nodeexporter:
     image: prom/node-exporter:v1.2.0
     container_name: nodeexporter
-    network: host
+    network_mode: host
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -44,7 +44,7 @@ services:
   grafana:
     image: grafana/grafana:7.5.10
     container_name: grafana
-    network: host
+    network_mode: host
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
