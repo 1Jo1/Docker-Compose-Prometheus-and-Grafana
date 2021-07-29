@@ -23,8 +23,6 @@ services:
     restart: unless-stopped
     labels:
       org.label-schema.group: "monitoring"
-    ports:
-      - "8000:8080"
 
   nodeexporter:
     image: prom/node-exporter:v1.2.0
@@ -42,8 +40,6 @@ services:
     restart: unless-stopped
     labels:
       org.label-schema.group: "monitoring"
-    ports:
-      - "9100:9100"
 
   grafana:
     image: grafana/grafana:7.5.10
@@ -59,5 +55,3 @@ services:
     network_mode: host
     labels:
       org.label-schema.group: "monitoring"
-    ports:
-      - "3000:3000"
