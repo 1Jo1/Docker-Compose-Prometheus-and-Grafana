@@ -23,7 +23,7 @@ services:
     labels:
       org.label-schema.group: "monitoring"
     ports:
-      - "8000:8080"
+      - "9090:9090"
 
   nodeexporter:
     image: prom/node-exporter:v1.2.0
