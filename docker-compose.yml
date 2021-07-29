@@ -9,6 +9,7 @@ services:
   prometheus:
     image: prom/prometheus:v2.28.1
     container_name: prometheus
+    network_mode: host
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus_data:/prometheus
@@ -22,12 +23,11 @@ services:
     restart: unless-stopped
     labels:
       org.label-schema.group: "monitoring"
-    ports:
-      - "9090:9090"
 
   nodeexporter:
     image: prom/node-exporter:v1.2.0
     container_name: nodeexporter
+    network_mode: host
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -40,8 +40,6 @@ services:
     restart: unless-stopped
     labels:
       org.label-schema.group: "monitoring"
-    ports:
-      - "9100:9100"
 
   grafana:
     image: grafana/grafana:7.5.10
@@ -53,7 +51,6 @@ services:
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_oauth_auto_login=true
     restart: unless-stopped
+    network_mode: host
     labels:
       org.label-schema.group: "monitoring"
-    ports:
-      - "3000:3000"
