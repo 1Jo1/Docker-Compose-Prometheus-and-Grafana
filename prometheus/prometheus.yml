@@ -30,7 +30,7 @@ scrape_configs:
   - job_name: 'arm-node'
     scrape_interval: 5s
     static_configs:
-      - targets: ['100.102.90.15:9100']
+      - targets: ['localhost:9100']
         labels:
           hostname: arm
 
