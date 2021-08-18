@@ -25,7 +25,7 @@ services:
       org.label-schema.group: "monitoring"
 
   nodeexporter:
-    image: prom/node-exporter:v1.2.0
+    image: prom/node-exporter:v1.2.2
     container_name: nodeexporter
     network_mode: host
     volumes:

@@ -39,7 +39,14 @@ scrape_configs:
     static_configs:
       - targets: ['100.122.109.47:9100']
         labels:
-          hostname: tenet   
+          hostname: tenet
+
+  - job_name: 'whitebeard-node'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['100.83.192.7:9100']
+        labels:
+          hostname: whitebeard
 
   - job_name: 'prometheus'
     scrape_interval: 5s
