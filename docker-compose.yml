@@ -7,7 +7,7 @@ volumes:
 services:
 
   prometheus:
-    image: prom/prometheus:v2.28.1
+    image: prom/prometheus:v2.29.2
     container_name: prometheus
     network_mode: host
     volumes:
@@ -42,7 +42,7 @@ services:
       org.label-schema.group: "monitoring"
 
   grafana:
-    image: grafana/grafana:7.5.10
+    image: grafana/grafana:8.1.2
     container_name: grafana
     network_mode: host
     volumes:
