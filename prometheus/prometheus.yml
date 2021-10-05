@@ -20,12 +20,12 @@ scrape_configs:
         labels:
           hostname: incept
 
-  - job_name: 'hetzner-node'
+  - job_name: 'kaido-node'
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9100']
         labels:
-          hostname: netcup
+          hostname: kaido
   
   - job_name: 'pi-node'
     scrape_interval: 5s
