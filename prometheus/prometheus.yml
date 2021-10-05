@@ -20,7 +20,7 @@ scrape_configs:
         labels:
           hostname: incept
 
-  - job_name: 'netcup-node'
+  - job_name: 'hetzner-node'
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9100']
