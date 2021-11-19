@@ -30,7 +30,7 @@ scrape_configs:
   - job_name: 'pi-node'
     scrape_interval: 1s
     static_configs:
-      - targets: ['100.76.32.117:9100']
+      - targets: ['100.124.38.31:9100']
         labels:
           hostname: pi
   
