@@ -60,8 +60,6 @@ services:
     image: gcr.io/cadvisor/cadvisor:v0.43.0
     container_name: cadvisor
     network_mode: host
-    ports:
-    - 8080:8080
     volumes:
     - /:/rootfs:ro
     - /var/run:/var/run:rw
