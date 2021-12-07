@@ -21,7 +21,7 @@ scrape_configs:
           hostname: incept
 
   - job_name: 'kaido-node'
-    scrape_interval: 1s
+    scrape_interval: 10s
     static_configs:
       - targets: ['localhost:9100']
         labels:
