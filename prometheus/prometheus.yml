@@ -44,7 +44,7 @@ scrape_configs:
   - job_name: 'whitebeard-node'
     scrape_interval: 15s
     static_configs:
-      - targets: ['100.83.192.7:9100']
+      - targets: ['100.105.123.67:9100']
         labels:
           hostname: whitebeard
 
