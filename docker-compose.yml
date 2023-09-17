@@ -55,4 +55,8 @@ services:
     labels:
       org.label-schema.group: "monitoring"
   
+  pushgateway:
+    image: prom/pushgateway:v1.6.2
+    network_mode: host
+    container_name: pushgateway
  
