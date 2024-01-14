@@ -1,12 +1,13 @@
 version: '3.9'
 
+
 volumes:
     prometheus_data: {}
     grafana_data: {}
 
 services:
   nodeexporter:
-    image: prom/node-exporter:v1.6.1
+    image: prom/node-exporter:v1.7.0
     container_name: nodeexporter
     network_mode: host
     volumes:
