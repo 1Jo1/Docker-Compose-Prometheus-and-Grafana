@@ -53,6 +53,19 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
+  - job_name: 'pi5'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['pi5:9100']
+        labels:
+          hostname: pi5
+  - job_name: 'teach'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['teach:9100']
+        labels:
+          hostname: teach
+
 #  - job_name: 'nginx'
 #    scrape_interval: 10s
 #    static_configs:
