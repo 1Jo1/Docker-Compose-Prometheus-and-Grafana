@@ -16,7 +16,7 @@ scrape_configs:
   - job_name: 'incept-node'
     scrape_interval: 5s
     static_configs:
-      - targets: ['100.100.218.115:9100']
+      - targets: ['incept:9100']
         labels:
           hostname: incept
 
