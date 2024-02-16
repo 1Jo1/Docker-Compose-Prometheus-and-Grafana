@@ -35,11 +35,17 @@ scrape_configs:
           hostname: pi
   
   - job_name: 'tenet-node'
-    scrape_interval: 5s
+    scrape_interval: 1s
     static_configs:
       - targets: ['100.122.189.95:9100']
         labels:
           hostname: tenet
+  - job_name: 'shanks-node'
+    scrape_interval: 1s
+    static_configs:
+      - targets: ['shanks:9100']
+        labels:
+          hostname: shanks
 
   - job_name: 'whitebeard-node'
     scrape_interval: 5s
@@ -60,7 +66,7 @@ scrape_configs:
         labels:
           hostname: pi5
   - job_name: 'teach'
-    scrape_interval: 3s
+    scrape_interval: 1s
     static_configs:
       - targets: ['teach:9100']
         labels:
