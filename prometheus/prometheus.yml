@@ -71,6 +71,12 @@ scrape_configs:
       - targets: ['teach:9100']
         labels:
           hostname: teach
+  - job_name: 'kuzan'
+    scrape_interval: 1s
+    static_configs:
+      - targets: ['kuzan:9100']
+        labels:
+          hostname: kuzan
 
 #  - job_name: 'nginx'
 #    scrape_interval: 10s
