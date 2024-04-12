@@ -2,7 +2,6 @@ version: '3.9'
 
 volumes:
     prometheus_data: {}
-    grafana_data: {}
 
 services:
 
@@ -46,7 +45,7 @@ services:
     container_name: grafana
     network_mode: host
     volumes:
-      - grafana_data:/var/lib/grafana
+      - ./grafana-config:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     environment:
       - GF_USERS_ALLOW_SIGN_UP=false
