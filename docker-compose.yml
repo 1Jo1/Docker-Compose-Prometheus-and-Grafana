@@ -41,9 +41,10 @@ services:
       org.label-schema.group: "monitoring"
 
   grafana:
-    image: grafana/grafana:10.2.3
+    image: grafana/grafana-oss:latest
     container_name: grafana
     network_mode: host
+    user: jo
     volumes:
       - ./grafana-config:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
