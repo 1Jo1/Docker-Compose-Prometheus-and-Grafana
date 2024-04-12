@@ -44,7 +44,7 @@ services:
     image: grafana/grafana-oss:latest
     container_name: grafana
     network_mode: host
-    user: 1000
+    user: "1000"
     volumes:
       - ./grafana-config:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
