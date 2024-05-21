@@ -7,7 +7,7 @@ volumes:
 
 services:
   nodeexporter:
-    image: prom/node-exporter:v1.7.0
+    image: docker.io/prom/node-exporter:v1.7.0
     container_name: nodeexporter
     network_mode: host
     volumes:
@@ -19,6 +19,6 @@ services:
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
-    restart: unless-stopped
+    restart: always
     labels:
       org.label-schema.group: "monitoring"
