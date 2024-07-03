@@ -17,6 +17,8 @@ services:
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus_data:/prometheus
+    logging:
+      driver: "json-file"
     networks:
       monitoring_network:
         aliases:
