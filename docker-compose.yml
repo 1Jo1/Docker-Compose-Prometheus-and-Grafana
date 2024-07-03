@@ -1,14 +1,18 @@
 version: '3.9'
 
 volumes:
-    prometheus_data: {}
+  prometheus_data: {}
+
+networks:
+  monitoring_network:
 
 services:
 
   prometheus:
     image: prom/prometheus:v2.48.1
     container_name: prometheus
-    network_mode: host
+    networks:
+      - monitoring_network
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus_data:/prometheus
@@ -26,7 +30,8 @@ services:
   nodeexporter:
     image: prom/node-exporter:v1.7.0
     container_name: nodeexporter
-    network_mode: host
+    networks:
+      - monitoring_network
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -43,6 +48,8 @@ services:
   grafana:
     image: grafana/grafana-oss:latest
     container_name: grafana
+    networks:
+      - monitoring_network
     ports:
       - 3000:3000
     user: "1000:991"
@@ -55,9 +62,12 @@ services:
     restart: unless-stopped
     labels:
       org.label-schema.group: "monitoring"
-  
+
   pushgateway:
     image: prom/pushgateway:v1.6.2
-    network_mode: host
     container_name: pushgateway
- 
+    networks:
+      - monitoring_network
+    restart: unless-stopped
+    labels:
+      org.label-schema.group: "monitoring"
