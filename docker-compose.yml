@@ -77,7 +77,9 @@ services:
     image: grafana/loki:latest
     container_name: loki
     networks:
-      - monitoring_network           
+      monitoring_network:
+        aliases:
+          - loki
     ports:
       - "3100:3100"
     volumes:
@@ -88,8 +90,6 @@ services:
   promtail:
     image: grafana/promtail:latest
     container_name: promtail
-    networks:
-      - monitoring_network           
     volumes:
       - ./promtail-config.yaml:/etc/promtail/config.yml
       - /home/jo/.local/share/containers/storage/overlay-containers:/home/jo/.local/share/containers/storage/overlay-containers:ro
