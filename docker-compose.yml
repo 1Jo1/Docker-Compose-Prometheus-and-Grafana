@@ -92,5 +92,5 @@ services:
       - monitoring_network           
     volumes:
       - ./promtail-config.yaml:/etc/promtail/config.yml
-      - /var/log/podman:/var/log/podman:ro
+      - /home/jo/.local/share/containers/storage/overlay-containers:/home/jo/.local/share/containers/storage/overlay-containers:ro
     command: -config.file=/etc/promtail/config.yml

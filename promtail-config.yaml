@@ -15,4 +15,5 @@ scrape_configs:
           - localhost
         labels:
           job: podman
-          __path__: /var/log/podman/**/*.log
+          __path__: /home/jo/.local/share/containers/storage/overlay-containers/**/*.log
+
