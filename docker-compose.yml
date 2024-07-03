@@ -87,7 +87,6 @@ services:
   promtail:
     image: grafana/promtail:latest
     container_name: promtail
-    logging: json-file 
     networks:
       - monitoring_network           
     volumes:
