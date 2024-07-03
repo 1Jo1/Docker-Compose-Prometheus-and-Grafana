@@ -84,7 +84,6 @@ services:
       - "3100:3100"
     volumes:
       - ./loki-config.yaml:/etc/loki/local-config.yaml
-      - /tmp/loki:/tmp/loki  # Mount the directory to ensure Loki can write to it
     command: -config.file=/etc/loki/local-config.yaml
 
   promtail:
