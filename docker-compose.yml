@@ -12,6 +12,7 @@ services:
   prometheus:
     image: prom/prometheus:v2.48.1
     container_name: prometheus
+    restart: always
     networks:
       - monitoring_network
     volumes:
@@ -37,6 +38,7 @@ services:
   nodeexporter:
     image: prom/node-exporter:v1.7.0
     container_name: nodeexporter
+    restart: always
     networks:
       - monitoring_network
     volumes:
@@ -55,6 +57,7 @@ services:
   grafana:
     image: grafana/grafana-oss:latest
     container_name: grafana
+    restart: always
     networks:
       - monitoring_network
     ports:
@@ -73,6 +76,7 @@ services:
   pushgateway:
     image: prom/pushgateway:v1.6.2
     container_name: pushgateway
+    restart: always
     networks:
       - monitoring_network
     restart: unless-stopped
@@ -82,6 +86,7 @@ services:
   loki:
     image: grafana/loki:latest
     container_name: loki
+    restart: always
     networks:
       monitoring_network:
         aliases:
@@ -93,6 +98,7 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
 
   promtail:
+    restart: always
     image: grafana/promtail:latest
     container_name: promtail
     volumes:
