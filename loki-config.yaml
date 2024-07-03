@@ -5,6 +5,8 @@ server:
   grpc_listen_port: 9095
 
 ingester:
+  wal:
+    dir: /tmp/loki/wal  # Added WAL directory
   lifecycler:
     ring:
       kvstore:
