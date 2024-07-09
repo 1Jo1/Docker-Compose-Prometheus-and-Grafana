@@ -3,27 +3,18 @@ version: '3.9'
 volumes:
   prometheus_data: {}
 
-networks:
-  monitoring_network:
-    internal: true
-
 services:
 
   prometheus:
     image: prom/prometheus:v2.48.1
     container_name: prometheus
     restart: always
-    networks:
-      - monitoring_network
+    network_mode: "host"
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus_data:/prometheus
     logging:
       driver: "json-file"
-    networks:
-      monitoring_network:
-        aliases:
-          - prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -39,8 +30,7 @@ services:
     image: prom/node-exporter:v1.7.0
     container_name: nodeexporter
     restart: always
-    networks:
-      - monitoring_network
+    network_mode: "host"
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -58,10 +48,7 @@ services:
     image: grafana/grafana-oss:latest
     container_name: grafana
     restart: always
-    networks:
-      - monitoring_network
-    ports:
-      - 3000:3000
+    network_mode: "host"
     user: "1000:991"
     volumes:
       - ./grafana-config:/var/lib/grafana
@@ -76,9 +63,8 @@ services:
   pushgateway:
     image: prom/pushgateway:v1.6.2
     container_name: pushgateway
+    network_mode: "host"
     restart: always
-    networks:
-      - monitoring_network
     restart: unless-stopped
     labels:
       org.label-schema.group: "monitoring"
@@ -87,12 +73,7 @@ services:
     image: grafana/loki:latest
     container_name: loki
     restart: always
-    networks:
-      monitoring_network:
-        aliases:
-          - loki
-    ports:
-      - "3100:3100"
+    network_mode: "host"
     volumes:
       - ./loki-config.yaml:/etc/loki/local-config.yaml
     command: -config.file=/etc/loki/local-config.yaml
@@ -100,6 +81,7 @@ services:
   promtail:
     restart: always
     image: grafana/promtail:latest
+    network_mode: "host"
     container_name: promtail
     volumes:
       - ./promtail-config.yaml:/etc/promtail/config.yml
